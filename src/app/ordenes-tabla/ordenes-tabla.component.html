@@ -1,0 +1,179 @@
+<div class="container-fluid tabla-ordenes p-3  " style="padding: 0;">
+   
+     <!-- header container -->
+    <div class="container-fluid" style="position: fixed;width: 100%;">
+      <div class="container-fluid position-relative d-flex" style="padding: 0;position: sticky;">
+
+        <!-- side bar -->
+        <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 15%;">
+         
+          <hr>
+          <ul class="nav nav-pills flex-column mb-auto">
+            <li class="nav-item ">
+              <a href="#" class="d-flex justify-content-between side-item-check" (click)="ordenesTotal()" >
+                <p class="h5">Total</p>
+                <p class="h5">{{total}}</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="d-flex justify-content-between side-item-check" (click)="ordenesSinFactura()">
+                <p class="h5">Sin factura</p>
+                <p class="h5">{{terminado}}</p>
+              </a>
+
+            </li>
+            <li class="nav-item">
+              <a href="#" class="d-flex justify-content-between side-item-check" (click)="ordenesCalidad()" >
+                <p class="h5">Calidad</p>
+                <p class="h5">{{calidad}}</p>                
+              </a>
+
+            </li>
+           
+            <li class="nav-item">
+              <a href="#" class="d-flex justify-content-between side-item-check" (click)="ordenesInstalacion()">
+                <p class="h5">Instalacion</p>
+                <p class="h5">{{instalacion}}</p>
+              </a>
+
+            </li>
+            <li class="nav-item">
+              <a href="#" class="d-flex justify-content-between side-item-check" (click)="ordenesNinguno()">
+                <p class="h5">Ninguno</p>
+                <p class="h5">{{nostatus}}</p>
+              </a>
+
+            </li>
+          </ul>
+          <hr>
+        
+        </div>
+        <!-- header -->
+        <div class=" container-fluid p-3 bg-primary text-white " style="width: 100%;padding: 0;">
+            <p class="mb-3 m-1 h2" >Manufactura</p>        
+        </div>
+        <!-- cards container -->
+        <div class="position-absolute " style="width: 80%;z-index: 10;right: 4%; top: 35%;display: flex;justify-content: space-around;">
+          <!-- cards -->           
+            <div class="card card-ordenes shadow card-hover " (click)="ordenesFiltro()" style="width: 13%;" >
+                <div class="card-body">
+                  <h6 class="card-title ">Ordenes</h6>
+                  <p class="card-text h3">{{ordenes}}</p>
+                </div>
+            </div>
+            <div class="card card-ordenes shadow card-hover" (click)="ordenesNesteo()" style="width: 13%;">
+                <div class="card-body">
+                  <h6 class="card-title ">Nesteo</h6>
+                  <p class="card-text h3">{{nesteo}}</p>
+                </div>
+            </div>
+            <div class="card card-ordenes shadow card-hover" (click)="ordenesRetrazo()" style="width: 13%;" >
+                <div class="card-body">
+                  <h6 class="card-title ">Retrazo</h6>
+                  <p class="card-text h3">{{retrazo}}</p>
+                </div>
+            </div>
+            <div class="card card-ordenes shadow card-hover" (click)="ordenesUrgente()" style="width: 13%;">
+                <div class="card-body">
+                  <h6 class="card-title ">Urgente</h6>
+                  <p class="card-text h3">{{urgente}}</p>
+                </div>
+            </div>
+            <div class="card card-ordenes shadow card-hover" (click)="ordenesTardia()" style="width: 13%;">
+                <div class="card-body">
+                  <h6 class="card-title ">Tardía</h6>
+                  <p class="card-text h3">{{tardia}}</p>
+                </div>
+            </div>
+        </div>
+      </div>
+      <!-- buscador -->
+      <div class="container-fluid p-0">
+        <nav class="nav bg-secondary text-light">
+          <ul class="nav nav-tabs d-flex justify-content-between p-1 h6" style="width: 100%;">
+            <li class="nav-item d-flex align-content-center" style="width: 10%;">
+              <p class="m-1">Orden:</p>
+              <input type="number" min="0"  (input)="ordenesSearch($event)" style="width: 80%;">
+            </li>
+            <li class="nav-item d-flex align-content-center" style="width: 25%;">
+              <p class="m-1">Cliente: </p>
+              <select name="cliente" id="cliente" (input)="clientesSearch($event)" style="width: 100%;">
+                  <option ></option>
+                @for(cliente of clientes;track $index){
+                  <option >{{cliente}}</option>
+                }                
+              </select>
+            </li>
+            <li class="nav-item d-flex align-content-center" style="width: 25%;" >
+              <p class="m-1">Producto: </p>
+              <input type="text" style="width: 60%;" (input)="productoSearch($event)">
+            </li>
+            <li class="nav-item d-flex align-content-center" style="width: 15%;" >
+              <p class="m-1">Status: </p>
+              <select name="cliente" id="cliente" (input)="statusSearch($event)" style="width: 60%;">
+                  <option ></option>
+                @for(stat of status;track $index){
+                  <option >{{stat}}</option>
+                }                
+              </select>
+            </li>
+          </ul>            
+        </nav>
+      </div>
+    </div>
+
+    <!-- Tabla -->
+    <div class="container-fluid " style="margin-top: 20%;">
+      <p class="h5">Projectos Activos</p>
+      <table class="table" style="border-radius: 5px;">
+          <thead class="h6">
+            <tr class="table-secondary">
+              <th style="width: 7%;">Orden</th>
+              <th style="width: 5%;">Tipo</th>
+              <th style="width: 10%;">Entrega</th>
+              <th style="width: 10%;">Producción</th>
+              <th style="width: 25%;">Cliente</th>
+              <th style="width: 30%;">Producto</th>
+              <th style="width: 8%;">Status</th>
+            </tr>
+          </thead>
+          <tbody class="h6">           
+            @for(item of tabla; track item.ot_number){
+              <tr>
+                <td>{{item.ot_number}}</td>
+                <td>{{item.tipe_order}}</td>
+                <td>{{item.date_rel}}</td>
+                <td>{{item.create_date}}</td>
+                <td>{{item.name_client}}</td>
+                <td>{{item.product_name}}</td>
+                <td>{{
+                      item.status === 'aprobacion'
+                      ? 'Nesteo'
+                      : item.status === 'corte'
+                      ? 'Corte'
+                      : item.status === 'revision'
+                      ? 'Revisión FAI'
+                      : item.status === 'doblado'
+                      ? 'Doblado'
+                      : item.status === 'soldadura'
+                      ? 'Soldadura'
+                      : item.status === 'maquinado'
+                      ? 'Maquinado'
+                      : item.status === 'pintura'
+                      ? 'Pintura'
+                      : item.status === 'ensamble'
+                      ? 'Ensamble'
+                      : item.status === 'calidad'
+                      ? 'Calidad'
+                      : item.status === 'instalacion'
+                      ? 'Instalación'
+                      : item.status === 'terminado'
+                      ? 'Terminado'                   
+                      : item.status
+                    }}</td>
+              </tr>
+            }
+          </tbody>
+      </table>
+    </div>
+    </div>

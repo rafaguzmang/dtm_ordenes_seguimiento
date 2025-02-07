@@ -1,0 +1,29 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+
+
+.tabla-ordenes{
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 3px;
+}
+
+.header-ordenes{
+    border: 1px solid rgba(0,0,0,0.1);
+}
+
+.card-hover:hover{
+    cursor: pointer;
+    border: 1px solid rgba(0,0,0,0.8);
+}
+
+.side-item-check{
+   text-decoration: none;
+   color: white;
+}
+.side-item-check:hover{
+    color:black;
+    background-color: rgb(0, 124, 247);
+    border-radius: 3px;
+}
