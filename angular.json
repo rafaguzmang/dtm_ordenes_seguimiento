@@ -65,7 +65,8 @@
         },
         "serve": {
           "options": {
-            "port": 4201
+            "port": 4201,
+            "allowedHosts": ["dtmindustry.ddns.net"]
           },
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
