@@ -74,9 +74,10 @@ body{
 .li-cliente {
     width: 25%;
 } 
-.li-cliente select{
-    width: 25%;
+#cliente{
+    width: 90%;
 } 
+
 
 .li-producto{
     width: 25%;

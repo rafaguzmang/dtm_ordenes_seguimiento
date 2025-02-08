@@ -170,8 +170,9 @@ export class OrdenesTablaComponent implements OnInit {
 
   ordenesTardia() {
     let newtabla:any = [];
+    let criterio = ['calidad','terminado','instalacion'];
     this.datosordenes.getOrdenes().forEach(val=>{ 
-      if ((val.status === 'aprobacion' || val.status === false) && Number(new Date(val.date_rel))-4 <= Number(new Date())){
+      if (((val.status === 'aprobacion' || val.status === false) && Number(new Date(val.date_rel))-4 <= Number(new Date())) && criterio.indexOf(val.status)===-1 ){
         newtabla.push(val);
       }
     })    
@@ -184,9 +185,9 @@ export class OrdenesTablaComponent implements OnInit {
 
   ordenesUrgente() {
     let newtabla:any = [];
-    let criterio = ['calidad','terminado','instalacion',false];
+    let criterio = ['calidad','terminado','instalacion'];
     this.datosordenes.getOrdenes().forEach(val=>{
-      if ((Number(new Date(val.date_rel))-4 <= Number(new Date())) && criterio.indexOf(val.status)===-1){        
+      if (Number(new Date()) >= (Number(new Date(val.date_rel))-4) && criterio.indexOf(val.status)===-1){        
         newtabla.push(val);
       }
     })
@@ -199,7 +200,7 @@ export class OrdenesTablaComponent implements OnInit {
 
   ordenesRetrazo() {
     let newtabla:any = [];
-    let criterio = ['calidad','terminado','instalacion',false];
+    let criterio = ['calidad','terminado','instalacion'];
     this.datosordenes.getOrdenes().forEach(val=>{
       if (((new Date(val.date_rel)) < (new Date(val.create_date))) && criterio.indexOf(val.status)===-1 ){        
         newtabla.push(val);
@@ -324,7 +325,7 @@ export class OrdenesTablaComponent implements OnInit {
 
   retrazoComp():number{
     let contador = 0;
-    let criterio = ['calidad','terminado','instalacion',false];
+    let criterio = ['calidad','terminado','instalacion'];
     this.tabla.forEach(val=>{
       if (((new Date(val.date_rel)) < (new Date(val.create_date))) && criterio.indexOf(val.status)===-1){        
         contador++;
@@ -335,7 +336,7 @@ export class OrdenesTablaComponent implements OnInit {
 
   urgenteComp():number{
     let contador = 0;
-    let criterio = ['calidad','terminado','instalacion',false];
+    let criterio = ['calidad','terminado','instalacion'];
     this.tabla.forEach(val=>{
       if ((Number(new Date(val.date_rel))-4 <= Number(new Date())) && criterio.indexOf(val.status)===-1 ){        
         contador++;
@@ -346,7 +347,7 @@ export class OrdenesTablaComponent implements OnInit {
 
   tardiaComp():number{
     let contador = 0;
-    let criterio = ['calidad','terminado','instalacion',false];
+    let criterio = ['calidad','terminado','instalacion'];
     this.tabla.forEach(val=>{ 
       if (((val.status === 'aprobacion' || val.status === false) && Number(new Date(val.date_rel))-4 <= Number(new Date())) && criterio.indexOf(val.status)===-1 ){
         contador++;
