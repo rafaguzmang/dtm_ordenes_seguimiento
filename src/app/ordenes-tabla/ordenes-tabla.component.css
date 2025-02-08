@@ -4,7 +4,7 @@ body{
 }
 
 .container-table{
-    margin-top: 20%;
+    margin-top: 20em;
 }
 
 .tabla-ordenes{
@@ -17,6 +17,11 @@ body{
     width: 13%;
 }
 
+.card-hover{
+    cursor: pointer;
+    width: 10em;
+    
+}
 .card-hover:hover{
     cursor: pointer;
     border: 1px solid rgba(0,0,0,0.8);
@@ -80,9 +85,11 @@ body{
 .li-status{
     width: 15%;
 }
+
 @media (max-width:930px){
     .header-container{
-        position: static;        
+        position: static;    
+        width: 170%;    
     }
     .container-table{
         margin-top: 0%;
