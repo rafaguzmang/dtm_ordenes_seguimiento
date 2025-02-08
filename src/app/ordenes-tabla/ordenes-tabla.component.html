@@ -1,11 +1,11 @@
 <div class="container-fluid tabla-ordenes p-3  " style="padding: 0;">
    
      <!-- header container -->
-    <div class="container-fluid" style="position: fixed;width: 100%;">
-      <div class="container-fluid position-relative d-flex" style="padding: 0;position: sticky;">
+    <div class="container-fluid header-container" >
+      <div class="container-fluid position-relative d-flex vals-container">
 
         <!-- side bar -->
-        <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 15%;">
+        <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark container-info">
          
           <hr>
           <ul class="nav nav-pills flex-column mb-auto">
@@ -49,37 +49,37 @@
         
         </div>
         <!-- header -->
-        <div class=" container-fluid p-3 bg-primary text-white " style="width: 100%;padding: 0;">
+        <div class=" container-fluid p-3 bg-primary text-white container-tittle" style="width: 100%;padding: 0;">
             <p class="mb-3 m-1 h2" >Manufactura</p>        
         </div>
         <!-- cards container -->
-        <div class="position-absolute " style="width: 80%;z-index: 10;right: 4%; top: 35%;display: flex;justify-content: space-around;">
+        <div class="position-absolute container-manufactura">
           <!-- cards -->           
-            <div class="card card-ordenes shadow card-hover " (click)="ordenesFiltro()" style="width: 13%;" >
+            <div class="card card-ordenes shadow card-hover " (click)="ordenesFiltro()"  >
                 <div class="card-body">
                   <h6 class="card-title ">Ordenes</h6>
                   <p class="card-text h3">{{ordenes}}</p>
                 </div>
             </div>
-            <div class="card card-ordenes shadow card-hover" (click)="ordenesNesteo()" style="width: 13%;">
+            <div class="card card-ordenes shadow card-hover" (click)="ordenesNesteo()" >
                 <div class="card-body">
                   <h6 class="card-title ">Nesteo</h6>
                   <p class="card-text h3">{{nesteo}}</p>
                 </div>
             </div>
-            <div class="card card-ordenes shadow card-hover" (click)="ordenesRetrazo()" style="width: 13%;" >
+            <div class="card card-ordenes shadow card-hover" (click)="ordenesRetrazo()" >
                 <div class="card-body">
                   <h6 class="card-title ">Retrazo</h6>
                   <p class="card-text h3">{{retrazo}}</p>
                 </div>
             </div>
-            <div class="card card-ordenes shadow card-hover" (click)="ordenesUrgente()" style="width: 13%;">
+            <div class="card card-ordenes shadow card-hover" (click)="ordenesUrgente()">
                 <div class="card-body">
                   <h6 class="card-title ">Urgente</h6>
                   <p class="card-text h3">{{urgente}}</p>
                 </div>
             </div>
-            <div class="card card-ordenes shadow card-hover" (click)="ordenesTardia()" style="width: 13%;">
+            <div class="card card-ordenes shadow card-hover" (click)="ordenesTardia()">
                 <div class="card-body">
                   <h6 class="card-title ">Tardía</h6>
                   <p class="card-text h3">{{tardia}}</p>
@@ -90,25 +90,25 @@
       <!-- buscador -->
       <div class="container-fluid p-0">
         <nav class="nav bg-secondary text-light">
-          <ul class="nav nav-tabs d-flex justify-content-between p-1 h6" style="width: 100%;">
-            <li class="nav-item d-flex align-content-center" style="width: 10%;">
+          <ul class="nav nav-tabs d-flex justify-content-between p-1 h6 search-list" >
+            <li class="nav-item d-flex align-content-center li-orden">
               <p class="m-1">Orden:</p>
-              <input type="number" min="0"  (input)="ordenesSearch($event)" style="width: 80%;">
+              <input type="number" min="0"  (input)="ordenesSearch($event)" >
             </li>
-            <li class="nav-item d-flex align-content-center" style="width: 25%;">
+            <li class="nav-item d-flex align-content-center li-cliente">
               <p class="m-1">Cliente: </p>
-              <select name="cliente" id="cliente" (input)="clientesSearch($event)" style="width: 100%;">
+              <select name="cliente" id="cliente" (input)="clientesSearch($event)">
                   <option ></option>
                 @for(cliente of clientes;track $index){
                   <option >{{cliente}}</option>
                 }                
               </select>
             </li>
-            <li class="nav-item d-flex align-content-center" style="width: 25%;" >
+            <li class="nav-item d-flex align-content-center li-producto">
               <p class="m-1">Producto: </p>
               <input type="text" style="width: 60%;" (input)="productoSearch($event)">
             </li>
-            <li class="nav-item d-flex align-content-center" style="width: 15%;" >
+            <li class="nav-item d-flex align-content-center li-status">
               <p class="m-1">Status: </p>
               <select name="cliente" id="cliente" (input)="statusSearch($event)" style="width: 60%;">
                   <option ></option>
@@ -123,7 +123,11 @@
     </div>
 
     <!-- Tabla -->
+<<<<<<< HEAD
     <div class="container-fluid " style="margin-top: 22%;">
+=======
+    <div class="container-fluid container-table ">
+>>>>>>> 7f73f3f6ae2f4c13b248ec49ff76a27045bbbff1
       <p class="h5">Projectos Activos</p>
       <table class="table" style="border-radius: 5px;">
           <thead class="h6">
