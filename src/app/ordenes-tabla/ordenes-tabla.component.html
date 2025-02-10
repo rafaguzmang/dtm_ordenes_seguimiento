@@ -1,94 +1,21 @@
 <div class="container-fluid tabla-ordenes p-3  " style="padding: 0;margin: 0;">
-   
-     <!-- header container -->
-    <div class="container-fluid header-container" >
+  
+  <!-- header container -->
+  <div class="container-fluid header-container" >     
       <div class="container-fluid position-relative d-flex vals-container">
 
-        <!-- side bar -->
-        <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark container-info">
-         
-          <hr>
-          <ul class="nav nav-pills flex-column mb-auto">
-            <li class="nav-item ">
-              <a href="#" class="d-flex justify-content-between side-item-check" (click)="ordenesTotal()" >
-                <p class="h5">Total</p>
-                <p class="h5">{{total}}</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="d-flex justify-content-between side-item-check" (click)="ordenesSinFactura()">
-                <p class="h5">Sin factura</p>
-                <p class="h5">{{terminado}}</p>
-              </a>
-
-            </li>
-            <li class="nav-item">
-              <a href="#" class="d-flex justify-content-between side-item-check" (click)="ordenesCalidad()" >
-                <p class="h5">Calidad</p>
-                <p class="h5">{{calidad}}</p>                
-              </a>
-
-            </li>
-           
-            <li class="nav-item">
-              <a href="#" class="d-flex justify-content-between side-item-check" (click)="ordenesInstalacion()">
-                <p class="h5">Instalación</p>
-                <p class="h5">{{instalacion}}</p>
-              </a>
-
-            </li>
-            <li class="nav-item">
-              <a href="#" class="d-flex justify-content-between side-item-check" (click)="ordenesNinguno()">
-                <p class="h5">Ninguno</p>
-                <p class="h5">{{nostatus}}</p>
-              </a>
-
-            </li>
-          </ul>
-          <hr>
-        
-        </div>
         <!-- header -->
         <div class=" container-fluid p-3 bg-primary text-white container-tittle" style="width: 100%;padding: 0;">
-            <p class="mb-3 m-1 h2" >Manufactura</p>        
+            <p class="h2" >Manufactura</p>  
+            <div class="d-flex justify-content-between" style="width: 12%">
+              <p class="h5">Proyectos Activos</p>      
+              <p class="h5">{{total}}</p>    
+            </div>  
         </div>
-        <!-- cards container -->
-        <div class="position-absolute container-manufactura">
-          <!-- cards -->           
-            <div class="card card-ordenes shadow card-hover " (click)="ordenesFiltro()"  >
-                <div class="card-body">
-                  <h6 class="card-title ">Ordenes</h6>
-                  <p class="card-text h3">{{ordenes}}</p>
-                </div>
-            </div>
-            <div class="card card-ordenes shadow card-hover" (click)="ordenesNesteo()" >
-                <div class="card-body">
-                  <h6 class="card-title ">Nesteo</h6>
-                  <p class="card-text h3">{{nesteo}}</p>
-                </div>
-            </div>
-            <div class="card card-ordenes shadow card-hover" (click)="ordenesRetrazo()" >
-                <div class="card-body">
-                  <h6 class="card-title ">Retrazo</h6>
-                  <p class="card-text h3">{{retrazo}}</p>
-                </div>
-            </div>
-            <div class="card card-ordenes shadow card-hover" (click)="ordenesUrgente()">
-                <div class="card-body">
-                  <h6 class="card-title ">Urgente</h6>
-                  <p class="card-text h3">{{urgente}}</p>
-                </div>
-            </div>
-            <div class="card card-ordenes shadow card-hover" (click)="ordenesTardia()">
-                <div class="card-body">
-                  <h6 class="card-title ">Tardía</h6>
-                  <p class="card-text h3">{{tardia}}</p>
-                </div>
-            </div>
-        </div>
+        
       </div>
-      <!-- buscador -->
-      <div class="container-fluid p-0">
+       <!-- buscador -->
+       <div class="container-fluid p-0">
         <nav class="nav bg-secondary text-light">
           <ul class="nav nav-tabs d-flex justify-content-between p-1 h6 search-list" >
             <li class="nav-item d-flex align-content-center li-orden">
@@ -123,18 +50,18 @@
     </div>
 
     <!-- Tabla -->
-    <div class="container-fluid container-table ">
-      <p class="h5">Proyectos Activos</p>
+    <div class="container-fluid container-table ">     
       <table class="table" style="border-radius: 5px;">
           <thead class="h6">
             <tr class="table-secondary">
-              <th style="width: 7%;">Orden</th>
-              <th style="width: 5%;">Tipo</th>
-              <th style="width: 10%;">Entrega</th>
-              <th style="width: 10%;">Producción</th>
-              <th style="width: 25%;">Cliente</th>
+              <th style="width: 2%;">Orden</th>
+              <th style="width: 2%;">Tipo</th>
+              <th style="width: 10%;">Diseño</th>
+              <th style="width: 2%;">Días</th>
+              <th style="width: 6%;">Entrega</th>
+              <th style="width: 20%;">Cliente</th>
               <th style="width: 30%;">Producto</th>
-              <th style="width: 8%;">Status</th>
+              <th style="width: 5%;">Status</th>
             </tr>
           </thead>
           <tbody class="h6">           
@@ -142,8 +69,9 @@
               <tr>
                 <td>{{item.ot_number}}</td>
                 <td>{{item.tipe_order}}</td>
-                <td>{{item.date_rel}}</td>
                 <td>{{item.create_date}}</td>
+                <td>{{item.diferencia}}</td>
+                <td>{{item.date_rel}}</td>
                 <td>{{item.name_client}}</td>
                 <td>{{item.product_name}}</td>
                 <td>{{

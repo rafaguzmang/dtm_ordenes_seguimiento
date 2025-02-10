@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OdooService } from '../service/odoo-service.service';
 import { DataService } from '../service/data.service';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-ordenes-tabla',
@@ -14,6 +15,7 @@ export class OrdenesTablaComponent implements OnInit {
   tabla: any[] = [];
   clientes: string[] = [];
   status: string[] = [];
+  diferencia:number = 0;
   nesteo: number = 0;
   retrazo: number = 0;
   urgente: number = 0;
@@ -284,25 +286,23 @@ export class OrdenesTablaComponent implements OnInit {
 
   fetchOrdenes(){
     this.odoocon.authenticate().subscribe(uid=>{
-      this.odoocon.read(uid,[['id','!=',0]],
+      this.odoocon.read(uid,[['status','!=','calidad'],['status','!=','terminado'],['status','!=','instalacion']],
         'dtm.proceso',['ot_number','status','tipe_order','name_client','product_name','create_date','po_number','date_rel']).subscribe(result=>{
           this.datosordenes.setOrdenes(result);
+          // Agrega los días faltantes para la fecha de entrega
+          this.datosordenes.getOrdenes().forEach(val => {val.diferencia = Math.floor(((new Date(val.date_rel)).getTime()-(new Date()).getTime())/(1000 * 60 * 60 * 24)) + 1;});
+          // Filtra del que le faltan menos días para entregar al que          
           this.tabla = this.datosordenes.getOrdenes();
-          this.total = this.tabla.length;   
-          this.nesteo = this.contador('aprobacion'); 
-          this.calidad = this.contador('calidad');
-          this.terminado = this.contador('terminado');
-          this.instalacion = this.contador('instalacion');      
-          this.nostatus = this.contador('false');
-          this.ordenes = this.tabla.length - this.calidad - this.terminado -this.instalacion - this.nostatus;
-          this.retrazo =  this.retrazoComp();
-          this.urgente = this.urgenteComp();
-          this.tardia = this.tardiaComp();
-          this.clientesList();
-          this.statusList();
+          this.tabla.sort((a,b)=> a.diferencia - b.diferencia);
+          this.total = this.tabla.length;             
+          // this.retrazo =  this.retrazoComp();
+          // this.urgente = this.urgenteComp();
+          // this.tardia = this.tardiaComp();
+          // this.clientesList();
+          // this.statusList();
         })
     })
-  }
+  }  
   
   ngOnInit(): void {
     this.fetchOrdenes();

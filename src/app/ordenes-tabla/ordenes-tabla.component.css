@@ -3,8 +3,8 @@ body{
     padding: 0;
 }
 
-.container-table{
-    margin-top: 20em;
+.container-fluid{
+    width: 100%;
 }
 
 .tabla-ordenes{
@@ -17,32 +17,8 @@ body{
     width: 13%;
 }
 
-.card-hover{
-    cursor: pointer;
-    width: 10em;
-    
-}
-#cliente{    
-    width: 90%;    
-}
-.card-hover:hover{
-    cursor: pointer;
-    border: 1px solid rgba(0,0,0,0.8);
-    
-}
-
-.side-item-check{
-   text-decoration: none;
-   color: white;
-}
-.side-item-check:hover{
-    color:black;
-    background-color: rgb(0, 124, 247);
-    border-radius: 3px;
-}
 
 .header-container{
-    position: fixed;
     width: 100%;
 }
 .container-info{
@@ -169,5 +145,8 @@ body{
     }
     .li-status p{
         width: 50%;
+    }
+    .header-container{
+        width: 43em;
     }
 }
