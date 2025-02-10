@@ -18,6 +18,9 @@
        <div class="container-fluid p-0">
         <nav class="nav bg-secondary text-light">
           <ul class="nav nav-tabs d-flex justify-content-between p-1 h6 search-list" >
+            <li>
+              <button class="btn btn-light" (click)="actionRestart()">Restaurar</button>
+            </li>
             <li class="nav-item d-flex align-content-center li-orden">
               <p class="m-1">Orden:</p>
               <input type="number" min="0"  (input)="ordenesSearch($event)" >
