@@ -8,7 +8,7 @@ import { map, Observable } from 'rxjs';
 })
 export class OdooService {
 
-  private url = 'http://dtmindustry.ddns.net:8069/jsonrpc';
+  private url = 'http://localhost:8069/jsonrpc';
 
   constructor(private http:HttpClient) { }
 

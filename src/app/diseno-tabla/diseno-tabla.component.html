@@ -1,0 +1,41 @@
+<div class="container-fluid">
+    <div class="container my-5">
+        <div class="p-5 text-left text-white rounded-3" style="background-color: #982119;">
+            <h1 >Diseño</h1>
+            <p class="lead">    
+                Ordenes en diseño {{total}}
+            </p>
+        </div>
+    </div>
+    <div class="container my-5">
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">OD</th>
+                <th scope="col">Versión</th>
+                <th scope="col">Entrada</th>
+                <th scope="col">Días</th>
+                <th scope="col">Promesa</th>
+                <th scope="col">Cliente</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Diseñador</th>
+              </tr>
+            </thead>
+            <tbody>
+                @for (item of tabla; track $index) {
+                    <tr>
+                        <td>{{item.od_number}}</td>
+                        <td>{{item.version_ot}}</td>
+                        <td>{{item.date_in}}</td>
+                        <td>{{item.diferencia}}</td>
+                        <td>{{item.date_disign_finish}}</td>
+                        <td>{{item.name_client}}</td>
+                        <td>{{item.product_name}}</td>
+                        <td>{{item.disenador}}</td>             
+                    </tr>
+                }
+            </tbody>
+          </table>
+    </div>
+
+</div>

@@ -5,7 +5,17 @@ import { Injectable } from '@angular/core';
 })
 export class DataService {
   private ordenes:any[] = [];
+  private diseno:any[] = [];
+
   constructor() { }
+
+  setDiseno(datos:any){
+    this.diseno = datos;
+  }
+
+  getDiseno():any{
+    return this.diseno;
+  }
 
   setOrdenes(datos:any[]){
     this.ordenes = datos;

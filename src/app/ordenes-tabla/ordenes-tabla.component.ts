@@ -52,7 +52,6 @@ export class OrdenesTablaComponent implements OnInit {
         valor = 'instalación';
       } 
       if(valor === item.status){
-        console.log(valor,item.status);
         newtabla.push(item);
       }
     })
@@ -148,7 +147,7 @@ export class OrdenesTablaComponent implements OnInit {
     this.odoocon.authenticate().subscribe(uid=>{
       this.odoocon.read(uid,[['status','!=','calidad'],['status','!=','terminado'],['status','!=','instalacion']],
         'dtm.proceso',['ot_number','status','tipe_order','name_client','product_name','create_date','po_number','date_rel']).subscribe(result=>{
-          this.datosordenes.setOrdenes(result);
+          this.datosordenes.setOrdenes(result);          
           // Agrega los días faltantes para la fecha de entrega
           this.datosordenes.getOrdenes().forEach(val => {val.diferencia = Math.floor(((new Date(val.date_rel)).getTime()-(new Date()).getTime())/(1000 * 60 * 60 * 24)) + 1;});
           // Filtra del que le faltan menos días para entregar al que          
@@ -156,8 +155,7 @@ export class OrdenesTablaComponent implements OnInit {
           this.tabla.sort((a,b)=> a.diferencia - b.diferencia);
           this.total = this.tabla.length;
           this.clientesList();
-          this.statusList();
-            
+          this.statusList();            
         })
     })
   }  
