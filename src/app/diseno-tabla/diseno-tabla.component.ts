@@ -18,7 +18,7 @@ export class DisenoTablaComponent implements OnInit{
 
   fetchAll(){
     this.odooConent.authenticate().subscribe((uid:number)=>{
-      this.odooConent.read(uid,['|',['firma_ventas','=',false],['version_ot','>',1]],'dtm.odt',['id','od_number','firma_ventas','version_ot','date_in','date_disign_finish',
+      this.odooConent.read(uid,['|',['firma_ventas','=',false],'&',['version_ot','>',1],['manufactura','=',false]],'dtm.odt',['id','od_number','firma_ventas','version_ot','date_in','date_disign_finish',
         'name_client','product_name','disenador']).subscribe((result:any)=>{
         this.datos.setDiseno(result);
         // Agrega los días faltantes para la fecha de entrega
