@@ -1,0 +1,133 @@
+<div class="container-fluid">
+    <!-- Lámina
+    <div class="row m-3 justify-content-between ">
+        <div class="container text-center border border-info border-4 rounded-1">
+            <p class="h3">Lámina</p>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Proveedor</th>
+                        <th>Código</th>
+                        <th>Cliente</th>
+                        <th>Nombre</th>
+                        <th>Cantidad</th>
+                        <th>P.Unidad</th>
+                        <th>P.Total</th>
+                        <th>Orden</th>
+                        <th>Llega</th>
+                        <th>Listo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (item of lamina_tabla; track item.id) {
+                        <tr>
+                            <td>{{item.orden_trabajo}}</td>
+                            <td>{{item.proveedor_id[1]}}</td>
+                            <td>{{item.codigo}}</td>                    
+                            <td>{{item.cliente}}</td>
+                            <td>{{item.nombre}}</td>
+                            <td>{{item.cantidad}}</td>                    
+                            <td>{{item.unitario}}</td>
+                            <td>{{item.costo}}</td>                    
+                            <td>{{item.orden_compra!==false?item.orden_compra:""}}</td>
+                            <td>{{item.fecha_recepcion}}</td>                    
+                            <td>{{item.aprovacion!==false?item.aprovacion:""}}</td>                                              
+                        </tr>
+
+                    }
+                                      
+                </tbody>
+            </table>
+        </div>    
+    </div> -->
+    <!-- Proveedor -->
+    @for (cliente of cliente_tabla; track cliente){
+        <div class="row m-3 justify-content-between ">
+            <div class="container border border-secondary border-4 rounded-1">
+                <div class="row ">
+                    <p class="h3">{{cliente}}</p>                    
+                </div>
+                <div class="row w-100 text-center ">
+                    <div class="container bg-secondary m-1 border border-2 rounded-top">
+                        <div class="row text-center ">
+                            @for (orden of ordenesFn(cliente); track $index){
+                                <div class="row ">
+                                    <p class="h5 text-light">{{orden}}</p>
+                                </div>
+                                <div class="row ">
+                                    <table class="table table-light table-sm m-3 p-1 border">
+                                        <thead>
+                                            <tr>
+                                                <th class="codigo">Código</th>
+                                                <th class="proveedor">Proveedor</th>
+                                                <th class="nombre">Nombre</th>
+                                                <th class="cantidad">Cantidad</th>
+                                                <th class="unidad">Unidad</th>
+                                                <th class="total">Total</th>
+                                                <th class="folio">Folio</th>
+                                                <th class="llega">Llega</th>
+                                                <th class="aprovado">Aprovado</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @for (material of materialesFn(orden); track $index){
+                                              <tr> 
+                                                <!-- Código                                   -->
+                                                <td >{{material[0]}}</td>
+                                                <!-- Proveedor -->
+                                                <td>
+                                                    @if(material[1]){
+                                                        {{material[1]}}
+                                                    }@else {
+                                                        <select class="form-select" aria-label="Default select example" (input)="proveedorFunc($event,orden)">
+                                                            <option selected></option>
+                                                            @for(proveedor of proveedores_tabla;track $index){
+                                                                <option selected>{{proveedor}}</option>
+                                                            }   
+                                                        </select>
+                                                        }
+                                                </td>
+                                                <td>{{material[2]}}</td>
+                                                <td>{{material[3]}}</td>
+                                                <!-- Costo por unidad -->
+                                                <td  (input)="sendFunc($event,orden)">
+                                                    <div class="input-group input-group-sm mb-3 ">
+                                                        <input type="number" min="0" class="form-control" value="{{material[4]?material[4]:0}}">
+                                                        <span class="input-group-text">$</span>
+                                                    </div>
+                                                </td>
+                                                <td>{{material[5]}}</td>
+                                                <td (input)="sendFunc($event,orden)">
+                                                    <div class="input-group input-group-sm mb-3">
+                                                        <input type="text" class="form-control" >
+                                                      </div>
+                                                </td>
+                                                <td (input)="sendFunc($event,orden)">
+                                                    <div class="input-group input-group-sm mb-3">
+                                                        <input type="date" class="form-control" >
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    @if(material[6]){
+                                                        <button class="btn btn-sm btn-primary bi bi-cart3" (click)="comprarFnc(orden,material[0])">Comprar</button>
+                                                    }
+                                                </td>
+                                              </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            
+                                                            
+                            } 
+                        </div>
+
+                    </div>
+                   
+                </div>
+            </div>    
+        </div>
+    }  
+   
+</div>

@@ -7,7 +7,18 @@ export class DataService {
   private ordenes:any[] = [];
   private diseno:any[] = [];
 
+  private compras:any[] = [];
+  
+
   constructor() { }
+
+  setCompras(dato:any){
+    this.compras = dato;
+  }
+
+  getCompras():any{
+    return this.compras;
+  }
 
   setDiseno(datos:any){
     this.diseno = datos;

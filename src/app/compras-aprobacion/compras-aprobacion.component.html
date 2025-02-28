@@ -1,0 +1,71 @@
+<div class="container-fluid w-100">
+    <!-- Proveedor -->
+    @for (cliente of cliente_tabla; track cliente){
+        <div class="row m-3 justify-content-between ">
+            <div class="container border border-secondary border-4 rounded-1">
+                <div class="row ">
+                    <p class="h3">{{cliente}}</p>                    
+                </div>
+                <div class="row w-100 text-center ">
+                    <div class="container bg-secondary m-1 border border-2 rounded-top">
+                        <div class="row text-center w-100 ">
+                            @for (orden of ordenesFn(cliente); track $index){
+                                <div class="row ">
+                                    <p class="h5 text-light">{{orden}}</p>
+                                </div>
+                                <div class="row ">
+                                    <table class="table table-light table-sm table-responsive m-3 p-1 border">
+                                        <thead>
+                                            <tr>
+                                                <th class="codigo">Código</th>
+                                                <th class="proveedor">Proveedor</th>
+                                                <th class="nombre">Nombre</th>
+                                                <th class="cantidad">Cantidad</th>
+                                                <th class="unidad">Unidad</th>
+                                                <th class="total">Total</th>
+                                                <th class="folio">Folio</th>
+                                                <th class="llega">Llega</th>
+                                                <th class="aprovado">Aprovado</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @for (material of materialesFn(orden); track $index){
+                                              <tr> 
+                                                <!-- Código                                   -->
+                                                <td >{{material[0]}}</td>
+                                                <!-- Proveedor -->
+                                                <td>
+                                                    {{material[1]}}                                                   
+                                                </td>
+                                                <td>{{material[2]}}</td>
+                                                <td>{{material[3]}}</td>
+                                                <!-- Costo por unidad -->
+                                                <td>${{material[4]}}</td>
+                                                <td>${{material[5]}}</td>
+                                                <td >
+                                                   {{material[7]?material[7]:''}}
+                                                </td>
+                                                <td>
+                                                    {{material[8]?material[8]:''}}
+                                                </td>
+                                                <td class="d-flex justify-content-center">                                                   
+                                                    <div class="form-check form-switch text-center">
+                                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" (input)="aprobFunc($event,orden,material[0])" [checked]="material[9]">
+                                                    </div>
+                                                </td>
+                                              </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>            
+                            } 
+                        </div>
+
+                    </div>
+                   
+                </div>
+            </div>    
+        </div>
+    }  
+   
+</div>
