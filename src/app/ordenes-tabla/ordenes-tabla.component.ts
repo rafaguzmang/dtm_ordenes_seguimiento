@@ -30,9 +30,7 @@ export class OrdenesTablaComponent implements OnInit {
     let newtabla:any[] = [];
     let valor:string = '';
     this.tabla.forEach(item =>{
-      if(statusVal.value === 'Nesteo'){
-        valor = 'aprobacion';
-      }else if(statusVal.value === 'Corte'){
+      if(statusVal.value === 'Corte'){
         valor = 'corte';
       }else if(statusVal.value === 'Revisión FAI'){
         valor = 'revision';
@@ -106,9 +104,7 @@ export class OrdenesTablaComponent implements OnInit {
     let status:string[] = [];
     let valor:string = '';
     this.tabla.forEach(item =>{
-      if(item.status === 'aprobacion'){
-        valor = 'Nesteo';
-      }else if(item.status === 'corte'){
+      if(item.status === 'corte'){
         valor = 'Corte';
       }else if(item.status === 'revision'){
         valor = 'Revisión FAI';
@@ -128,8 +124,7 @@ export class OrdenesTablaComponent implements OnInit {
         valor = 'Instalación';
       }else if(item.status === ''){
         valor = '';
-      }    
-        
+      }            
       status.push(valor);   
     })
     this.status = Array.from(new Set(status)); 
