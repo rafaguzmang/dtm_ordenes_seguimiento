@@ -7,18 +7,20 @@
             </p>
         </div>
     </div>
-    <div class="container my-5">
+    <div class="container-fluid my-5">
         <table class="table">
             <thead>
               <tr>
                 <th scope="col">OD</th>
                 <th scope="col">Versión</th>
                 <th scope="col">Entrada</th>
+                <th scope="col">Salida</th>
                 <th scope="col">Días</th>
                 <th scope="col">Promesa</th>
                 <th scope="col">Cliente</th>
                 <th scope="col">Nombre</th>
                 <th scope="col">Diseñador</th>
+                <th scope="col">Notas</th>
               </tr>
             </thead>
             <tbody>
@@ -27,11 +29,15 @@
                         <td>{{item.od_number}}</td>
                         <td>{{item.version_ot}}</td>
                         <td>{{item.date_in}}</td>
+                        <td>{{item.date_rel}}</td>
                         <td>{{item.diferencia}}</td>
                         <td>{{item.date_disign_finish}}</td>
                         <td>{{item.name_client}}</td>
                         <td>{{item.product_name}}</td>
                         <td>{{item.disenador}}</td>             
+                        <td>
+                            <input type="text" value="{{item.notes==false?'':item.notes}}" (input)="notesFunc($event)">
+                        </td>             
                     </tr>
                 }
             </tbody>

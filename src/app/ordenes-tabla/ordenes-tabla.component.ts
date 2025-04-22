@@ -158,15 +158,6 @@ export class OrdenesTablaComponent implements OnInit {
   ngOnInit(): void {
     this.fetchOrdenes();
   }
-
- 
-
-  
-
-  
-
- 
- 
   
 }
 
